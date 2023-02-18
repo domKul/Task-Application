@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Badges {
     private int vote;
