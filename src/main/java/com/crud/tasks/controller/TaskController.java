@@ -3,7 +3,7 @@ package com.crud.tasks.controller;
 import com.crud.tasks.domain.Task;
 import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
-import com.crud.tasks.service.DbService;
+import com.crud.tasks.domain.service.DbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ private final TaskMapper taskMapper;
 private final DbService service;
 
 
-    @GetMapping
+    @GetMapping("getTasks")
     public ResponseEntity<List<TaskDto>>getTasks(){
     List<Task>tasks=service.getAllTasks();
     return ResponseEntity.ok(taskMapper.mapToTaskDtoList(tasks));
@@ -38,7 +38,7 @@ private final DbService service;
          service.deleteTaskById(taskId);
          return  ResponseEntity.ok().build();
     }
-    @PutMapping
+    @PutMapping("updateTask")
     public ResponseEntity<TaskDto> updateTask(@RequestBody TaskDto taskDto) {
         Task task = taskMapper.mapToTask(taskDto);
         Task savedTask = service.saveTask(task);

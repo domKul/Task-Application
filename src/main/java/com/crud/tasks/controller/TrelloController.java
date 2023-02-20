@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 
 
@@ -25,9 +24,6 @@ public class TrelloController {
         return ResponseEntity.ok(trelloClient.getTrelloBoards());
 
     }
-
-
-
 
     @PostMapping("cards")
     public ResponseEntity<CreatedTrelloCard> createdTrelloCard (@RequestBody TrelloCardDto trelloCardDto){
