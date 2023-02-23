@@ -23,7 +23,6 @@ public class TrelloController {
     @GetMapping("boards")
     public ResponseEntity<List<TrelloBoardDto>> getTrelloBoards() {
         return ResponseEntity.ok(trelloService.fetchTrelloBoards());
-
     }
 
     @PostMapping("cards")
