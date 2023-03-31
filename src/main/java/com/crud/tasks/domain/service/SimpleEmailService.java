@@ -1,5 +1,6 @@
 package com.crud.tasks.domain.service;
 
+import com.crud.tasks.config.AdminConfig;
 import com.crud.tasks.domain.Mail;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
