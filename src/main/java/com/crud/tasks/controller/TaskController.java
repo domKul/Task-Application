@@ -29,7 +29,6 @@ private final DbService service;
     @GetMapping(value = "{taskId}")
     public ResponseEntity<TaskDto> getTask(@PathVariable Long taskId) throws TaskNotFoundException {
         return  ResponseEntity.ok(taskMapper.mapToTaskDto(service.getTask(taskId)));
-
     }
      @DeleteMapping("{taskId}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long taskId) throws TaskNotFoundException {
