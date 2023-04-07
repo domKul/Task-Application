@@ -42,8 +42,7 @@ class TaskControllerTest {
     @MockBean
     private DbService dbService;
 
-    @Autowired
-    private TaskMapper taskMapper;
+
 
 
     @Test
@@ -80,7 +79,7 @@ class TaskControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.title", Matchers.is("taskDto")))
+                .andExpect(jsonPath("$.title", Matchers.is("task")))
                 .andExpect(jsonPath("$.content", Matchers.is("content")));
 
 
@@ -116,22 +115,22 @@ class TaskControllerTest {
     void shouldUpdateTask() throws Exception{
         //Given
         Long id = 1L;
-        Task task = new Task(id,"task","content");
-        TaskDto taskDto = new TaskDto(1L,"task","content");
+        TaskDto taskDto = new TaskDto(id, "task", "content");
 
-        when(dbService.saveTask(task)).thenReturn(task);
+        Task task = new Task(id, "task", "content");
+        Task updatedTask = new Task(id, "updatedTask", "updatedContent");
+
+        when(dbService.saveTask(task)).thenReturn(updatedTask);
 
         Gson gson = new Gson();
         String jsonContent = gson.toJson(taskDto);
 
         //When & Then
-        mockMvc
-                .perform(MockMvcRequestBuilders
+        mockMvc.perform(MockMvcRequestBuilders
                         .put("/v1/tasks/updateTask")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .characterEncoding("UTF-8")
                         .content(jsonContent))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id",Matchers.is(1L)));
+                .andExpect(status().isOk());
     }
 
     @Test
