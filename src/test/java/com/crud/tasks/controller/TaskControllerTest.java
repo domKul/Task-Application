@@ -39,6 +39,7 @@ class TaskControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+
     @MockBean
     private DbService dbService;
 
@@ -130,7 +131,8 @@ class TaskControllerTest {
                         .put("/v1/tasks/updateTask")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonContent))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("updatedTask")));
     }
 
     @Test
