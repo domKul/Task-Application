@@ -1,4 +1,4 @@
-package com.crud.tasks.domain.service;
+package com.crud.tasks.service;
 
 import com.crud.tasks.controller.TaskNotFoundException;
 import com.crud.tasks.domain.Task;

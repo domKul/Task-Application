@@ -2,18 +2,13 @@ package com.crud.tasks.service;
 
 import com.crud.tasks.config.AdminConfig;
 import com.crud.tasks.domain.*;
-import com.crud.tasks.domain.service.SimpleEmailService;
-import com.crud.tasks.domain.service.TrelloService;
 import com.crud.tasks.trello.client.TrelloClient;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.validation.constraints.Email;
 import java.util.List;
 import java.util.Optional;
 

@@ -2,7 +2,7 @@ package com.crud.tasks.scheduler;
 
 import com.crud.tasks.config.AdminConfig;
 import com.crud.tasks.domain.Mail;
-import com.crud.tasks.domain.service.SimpleEmailService;
+import com.crud.tasks.service.SimpleEmailService;
 import com.crud.tasks.repository.TaskRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
