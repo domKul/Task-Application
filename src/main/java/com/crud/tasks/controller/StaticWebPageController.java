@@ -9,16 +9,14 @@ import java.util.Map;
 @Controller
 public class StaticWebPageController {
 
-    String first = "2 * 2 = 4";
-    String second = "2 * 2 + 2 = 6";
-    String third = "2 - 2 * 2 = -2";
+
 
     @RequestMapping("/")
     public String index(Map<String, Object > model){
        model.put("variable", "My Thymeleaf variable");
-       model.put("one", first);
-       model.put("two", second);
-       model.put("three",third);
+       model.put("one", 1);
+       model.put("two", 2);
+       model.put("three",3);
         return "index";
     }
 }

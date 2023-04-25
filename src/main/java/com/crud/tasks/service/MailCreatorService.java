@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 
 @Service
 public class MailCreatorService {
@@ -18,6 +22,14 @@ public class MailCreatorService {
     private TemplateEngine templateEngine;
 
     public String buildTrelloCardEmail(String message) {
+        int hour = 6;
+        String result ;
+
+        List<String> functionality = new ArrayList<>();
+        functionality.add("You can manage your tasks");
+        functionality.add("Provides connection with Trello Account");
+        functionality.add("Application allows sending tasks to Trello");
+
         Context context = new Context();
         context.setVariable("message", message);
         context.setVariable("tasks_url", "http://localhost:8080/crud");
@@ -26,10 +38,19 @@ public class MailCreatorService {
         context.setVariable("company_name", adminConfig.getCompanyName());
         context.setVariable("company_email", adminConfig.getCompanyEmail());
         context.setVariable("company_phone", adminConfig.getCompanyPhone());
-        context.setVariable("show_button", false);
         context.setVariable("is_friend", false);
         context.setVariable("admin_config", adminConfig);
-        return templateEngine.process("mail/created-trello-card-mail", context);
+        context.setVariable("application_functionality", functionality);
+
+        Calendar calendar = Calendar.getInstance();
+
+        if (calendar.get(Calendar.HOUR_OF_DAY)>= hour){
+            result = templateEngine.process("mail/daily_information",context);
+        }else{
+            result = templateEngine.process("mail/created-trello-card-mail", context);
+        }
+        return result;
+
     }
 
 }
